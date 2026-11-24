@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ExploreNova | Novaliches, Quezon City</title>
+
+  <!-- CSS: each member edits ONLY their own file. base.css loads first.
+       NOGUET: define colors as CSS variables (:root) in base.css from day 1,
+       so Aragon can add the dark theme later without rewriting everyone's CSS. -->
+  <link rel="stylesheet" href="css/base.css">        <!-- NOGUET: colors, fonts -->
+  <link rel="stylesheet" href="css/navbar.css">      <!-- ARAGON: navbar, welcome section -->
+  <link rel="stylesheet" href="css/about.css">       <!-- BANDOLA -->
+  <link rel="stylesheet" href="css/landmarks.css">   <!-- GARCIA -->
+  <link rel="stylesheet" href="css/businesses.css">  <!-- NOGUET -->
+  <link rel="stylesheet" href="css/modal.css">       <!-- PAYOD -->
+  <link rel="stylesheet" href="css/contact.css">     <!-- PALMIANO -->
+  <link rel="stylesheet" href="css/footer.css">     <!-- PALMIANO -->
+</head>
+<body>
+
+  <!-- ============ NAVBAR (ARAGON) ============
+       single-page site: every link is an anchor (#id) that scrolls to a section.
+       TODO: sticky position, clickable logo (back to #home) -->
+  <header id="navbar">
+    <a href="#home" class="logo">ExploreNova</a>
+    <button id="menu-toggle" aria-label="Open menu">&#9776;</button>
+    <nav id="nav-links">
+      <a href="#about">About</a>
+      <a href="#landmarks">Landmarks</a>
+      <a href="#businesses">Businesses</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <!-- DARK MODE: do this LAST (Aragon). toggles a data-theme attribute in theme.js -->
+    <button id="theme-toggle" aria-label="Toggle dark mode">Dark</button>
+  </header>
+
+  <main>
+
+    <!-- ============ HERO (ARAGON) ============
+         TODO: background image, headline, short welcome text,
+         and an "Explore More" button that scrolls to #about -->
+    <section id="home">
+      <h1>Novaliches, Quezon City</h1>
+      <p><!-- TODO: welcome text --></p>
+      <a href="#about" class="btn">Explore More</a>
+    </section>
+
+    <!-- ============ ABOUT (ARAGON + BANDOLA) ============
+         1. ARAGON: #about-intro = short about/history of Novaliches in your own
+         words. Say clearly that Novaliches is a broad area made of many
+         barangays, and this site features three of them (mentioned sa baba).
+         2. BANDOLA: #brgy-sections = one clear block per barangay (Gulod,
+         San Bartolome, Novaliches Proper). The barangay blocks have NO
+         stats of their own. After the last block, #brgy-stats shows ONE
+         stat: the combined population of the three barangays (the sum),
+         with source and year. Let about.js add up the population numbers
+         from the array instead of typing the total by hand, so it stays
+         correct if a number changes. DONT COPY PASTE FROM THE ORIGINAL WEBSITE. -->
+    <section id="about">
+      <h2>About Novaliches</h2>
+      <div id="about-intro"></div>          <!-- ARAGON -->
+
+      <div id="brgy-sections"></div>        <!-- BANDOLA: one block per barangay -->
+      <div id="brgy-stats"></div>           <!-- BANDOLA: ONE combined population (sum of the 3) -->
+
+      <!-- BANDOLA: ONE video only (youtu.be/CL4-GEwyDPM). Click-to-play:
+           show a thumbnail first, load the iframe on click, no autoplay.
+           Verify that it is about Novaliches and credit the creator. -->
+      <div id="intro-video"></div>
+    </section>
+
+    <!-- ============ LANDMARKS (GARCIA) ============
+         TODO: at least 5 famous places overall (not per barangay), each a card with picture, name,
+         barangay label, and a 1-2 sentence teaser. Clicking a card opens the
+         shared pop-up (see modal below, kay palmiano). Cards are built by JS from the data
+         array in js/landmarks.js, not typed here. -->
+    <section id="landmarks">
+      <h2>Landmarks</h2>
+      <div id="landmarks-grid"></div>
+    </section>
+
+    <!-- ============ BUSINESSES (NOGUET) ============
+         TODO: our own verified list, at least 5 businesses.
+         Search bar filters by name, cards filter by category.
+         Edit the cards to match YOUR categories (data-category must match
+         the "category" field in js/businesses.js). -->
+    <section id="businesses">
+      <h2>Businesses</h2>
+      <input id="business-search" type="search" placeholder="Search a business...">
+      <div id="business-filters">
+        <button class="chip active" data-category="all">All</button>
+        <button class="chip" data-category="health">Health</button>
+        <button class="chip" data-category="food">Food</button>
+        <button class="chip" data-category="auto">Auto</button>
+        <button class="chip" data-category="home">Home</button>
+        <button class="chip" data-category="other">Other</button>
+      </div>
+      <div id="business-list"></div>
+    </section>
+
+    <!-- ============ CONTACT (PALMIANO) ============
+         General inquiry for the WEBSITE (questions, suggestions, corrections),
+         not for the businesses. Fields: name, email, message, with a
+         validation message under each (contact.js). The form is demo only
+         (no server). Dev contacts: use a group email or links we all agree on -->
+    <section id="contact">
+      <h2>Contact</h2>
+      <form id="contact-form" novalidate>
+        <!-- TODO: label + input + error message for name, email, message -->
+        <button type="submit">Send message</button>
+      </form>
+      <div id="dev-contacts"></div>
+    </section>
+
+  </main>
+
+  <!-- ============ SHARED POP-UP (PAYOD) ============
+       ONE modal for BOTH landmarks and businesses. openModal(item) in modal.js
+       fills these ids from a data object, so both data files must use the
+       same field names:
+         { id, name, category, barangay, image, info, address, contact, video }
+       Fields can be empty (video is optional). Needs: Back button, close on
+       background click and Esc key, scrollable body. -->
+  <div id="info-modal" class="modal hidden" role="dialog" aria-modal="true">
+    <div class="modal-box">
+      <button id="modal-back">&larr; Back</button>
+      <h3 id="modal-title"></h3>
+      <img id="modal-image" alt="">
+      <div id="modal-info"></div>
+      <div id="modal-location"></div>
+      <div id="modal-contact"></div>
+      <div id="modal-video"></div>
+    </div>
+  </div>
+
+  <!-- ============ FOOTER (PALMIANO) ============
+       TODO: copyright line, group name (NovaYan!), "Redesigned from
+       novalichesqc.com", credits for images/fonts/video, and
+       "Business details verified via Google Maps, last checked: [date]". -->
+  <footer id="footer"></footer>
+  <button id="back-to-top" aria-label="Back to top">&uarr;</button>  <!-- ARAGON -->
+
+  <!-- SCRIPTS: order matters. Data files first, then modal, then the rest. -->
+  <script src="js/landmarks.js"></script>   <!-- GARCIA: landmarks data + cards -->
+  <script src="js/businesses.js"></script>  <!-- NOGUET: business data + search + filter -->
+  <script src="js/modal.js"></script>       <!-- PALMIANO: openModal(item) -->
+  <script src="js/about.js"></script>       <!-- BANDOLA: stats, video click-to-play -->
+  <script src="js/contact.js"></script>     <!-- PALMIANO: form validation -->
+  <script src="js/theme.js"></script>       <!-- ARAGON: menu, back-to-top, dark mode (last) -->
+</body>
+</html>
