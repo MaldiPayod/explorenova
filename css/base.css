@@ -1,4 +1,5 @@
 /* (Payod)
+
    shared variables, typography, layout.
    other css files should USE these variables, not ti redefine.
    for dark mode: theme.js sets data-theme="dark" on <html>.
