@@ -1,1 +1,126 @@
 
+body {
+  margin: 0;                     
+  font-family: Arial, sans-serif;
+  background-color: #cfe0f7;   
+  display: flex;                 
+  justify-content: space-between;
+  align-items: center;          
+  padding: 20px 35px;
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);    
+}
+
+
+  
+
+
+header .logo {
+  font-size: 22px;
+  font-weight: bold;
+  color: #0b4aa8;               
+  text-decoration: none;
+}
+
+header nav a {
+  margin-left: 25px;
+  font-weight: bold;
+  color: black;
+  text-decoration: none;
+}
+
+
+#contact {
+  max-width: 700px;              
+  margin: 0 auto;               
+  padding: 40px 20px;
+}
+
+#contact h1 {
+  margin: 0 0 20px 0;
+  font-size: 32px;
+  color: #262b4d;              
+}
+
+
+#contact-form {
+  display: flex;
+  flex-direction: column;       
+  gap: 8px;                      
+  padding-left: 25px;
+}
+
+#contact-form label {
+  font-size: 18px;
+  color: #262b4d;
+  letter-spacing: 1px;
+}
+
+
+#contact-form input,
+#contact-form textarea {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  font-size: 16px;
+  background-color: white;
+  border: 1px solid #5b7fb5;     
+  border-radius: 5px;            
+  box-sizing: border-box;     
+}
+
+#contact-form textarea {
+  height: 95px;                  
+  resize: vertical;              
+}
+
+
+#contact-form input:focus,
+#contact-form textarea:focus {
+  outline: 3px solid #0b4aa8;
+}
+
+
+#contact-form button {
+  width: fit-content;            
+  padding: 14px 25px;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  background-color: #0b4aa8;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;    
+}
+
+#contact-form button:hover {
+  background-color: #083a85;     
+}
+
+#dev-contacts {
+  margin-top: 40px;
+  padding: 25px;
+  text-align: center;
+  color: white;
+  background-color: #262b4d;
+}
+
+#dev-contacts a {
+  color: #cfe0f7;
+}
+
+
+@media (max-width: 600px) {
+  header {
+    flex-direction: column;      
+    gap: 10px;
+  }
+
+  header nav a {
+    margin: 0 10px;
+  }
+
+  #contact-form {
+    padding-left: 0;
+  }
+}
